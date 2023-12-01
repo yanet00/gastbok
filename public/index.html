@@ -1,0 +1,44 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gästbok</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Yanets Gästbok</h1>
+
+
+  <form id="guestbookform" action="/posts" method="post">
+    <!-- Your form content here -->
+    <label for="name">Namn:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">E-post:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="homepage">Homepage:</label>
+    <input type="text" id="homepage" name="homepage"><br><br>
+
+    <label for="tel">Telefon:</label>
+    <input type="tel" id="tel" name="tel"><br><br>
+
+    <label for="comment">Kommentar:</label><br>
+    <textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+
+    <button type="submit">Skicka</button>
+  </form>
+
+
+  <div id="guestbookentries">
+    <!-- Display submitted details here -->
+    <!-- This part will be dynamically updated by client.js -->
+  </div>
+
+  <script src="client.js"></script>
+</body>
+
+</html>
