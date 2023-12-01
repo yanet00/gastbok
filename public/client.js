@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Hämta formuläret och gästboksinläggsområdet från DOM
   const form = document.getElementById('guestbookform');
   const guestbookEntries = document.getElementById('guestbookentries');
 
+  // Lägg till en händelselyssnare för formulärsubmission
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    // Skapa en FormData-objekt från formuläret
     const formData = new FormData(form);
     const data = {};
+    // Konvertera FormData till vanligt objekt
     formData.forEach((value, key) => {
       data[key] = value;
     });
-
+// Skicka formulärdata till servern med Fetch API
     const response = await fetch('/posts', {
       method: 'POST',
       headers: {
@@ -18,23 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify(data),
     });
-
+ // Kontrollera om formulärsubmissionen var framgångsrik
     if (response.ok) {
-      // If the form submission was successful, update guestbook entries
+      // Uppdatera gästboksinlägg och återställ formuläret
       updateGuestbook();
-      // Optionally, clear the form fields
+      
       form.reset();
     } else {
-      console.error('Failed to submit the form.');
+      console.error('Misslyckades med att skicka formuläret.');
     }
   });
 
-  // Function to fetch and update guestbook entries
+ // Funktion för att uppdatera gästboksinlägg
   const updateGuestbook = async () => {
-    const response = await fetch('/posts');
-    const entries = await response.json();
+     // Hämta gästboksinlägg från servern med Fetch API
+  const response = await fetch('/posts');
+  const entries = await response.json();
 
-    // Update the guestbook entries on the page
+// Uppdatera DOM med de hämtade gästboksinläggen
     guestbookEntries.innerHTML = entries.map(entry => {
       return `<div class="entry">
       <p><b>Namn:</b> ${entry.name}</p>
@@ -46,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>`;
     }).join('');
   };
-
-  // Initial update when the page loads
+  // Uppdatera gästboksinlägg när sidan laddas
   updateGuestbook();
 });

@@ -1,11 +1,8 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="sv">
-
 <head>
   <meta charset="UTF-8">
-  <title>Gästbok</title>
-  <link rel="stylesheet" href="style.css">
+ <title>Gästbok</title>
 </head>
 
 <body>
@@ -13,7 +10,7 @@
 
 
   <form id="guestbookform" action="/posts" method="post">
-    <!-- Your form content here -->
+    
     <label for="name">Namn:</label>
     <input type="text" id="name" name="name" required><br><br>
 
@@ -34,8 +31,7 @@
 
 
   <div id="guestbookentries">
-    <!-- Display submitted details here -->
-    <!-- This part will be dynamically updated by client.js -->
+    
   </div>
 
   <script src="client.js"></script>
